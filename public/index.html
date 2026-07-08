@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Lixo</title>
+    <link rel="stylesheet" href="./assets/css/app.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="./assets/images/logo.png" alt="E-Lixo">
+        <div>
+          <strong>E-Lixo</strong>
+          <span>Coleta, pontuacao e ranking</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#ranking">Ranking</a>
+        <a href="#catalogo">Pontuacao</a>
+        <a href="#acesso">Acesso</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Cameta/PA</p>
+          <h1>Gestao de descarte de lixo eletronico</h1>
+          <p>
+            Esta versao estatica foi preparada para GitHub Pages com Supabase
+            como backend. Configure a URL e a anon key em
+            <code>public/assets/js/env.js</code>.
+          </p>
+        </div>
+        <div class="status-card">
+          <span id="connection-status">Verificando Supabase...</span>
+        </div>
+      </section>
+
+      <section id="ranking" class="section">
+        <div class="section-heading">
+          <h2>Ranking do mes</h2>
+          <button id="refresh-ranking" type="button">Atualizar</button>
+        </div>
+        <div id="ranking-list" class="list"></div>
+      </section>
+
+      <section id="catalogo" class="section">
+        <div class="section-heading">
+          <h2>Pontuacao por dispositivo</h2>
+          <button id="refresh-products" type="button">Atualizar</button>
+        </div>
+        <div id="product-list" class="grid"></div>
+      </section>
+
+      <section id="acesso" class="section two-columns">
+        <form id="login-form" class="panel">
+          <h2>Entrar</h2>
+          <label>
+            E-mail
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+          <label>
+            Senha
+            <input name="password" type="password" required autocomplete="current-password">
+          </label>
+          <button type="submit">Entrar</button>
+          <button id="logout-button" type="button" class="secondary">Sair</button>
+        </form>
+
+        <form id="signup-form" class="panel">
+          <h2>Cadastrar participante</h2>
+          <label>
+            Nome
+            <input name="nome_usuario" type="text" maxlength="60" required>
+          </label>
+          <label>
+            CPF
+            <input name="matricula" type="text" maxlength="14" required>
+          </label>
+          <label>
+            E-mail
+            <input name="email" type="email" maxlength="120" required autocomplete="email">
+          </label>
+          <label>
+            Senha
+            <input name="password" type="password" minlength="6" required autocomplete="new-password">
+          </label>
+          <button type="submit">Criar conta</button>
+        </form>
+      </section>
+
+      <section id="transacao" class="section">
+        <form id="transaction-form" class="panel">
+          <h2>Registrar transacao</h2>
+          <div class="form-grid">
+            <label>
+              Participante
+              <select name="id_usuario" required></select>
+            </label>
+            <label>
+              Dispositivo
+              <select name="id_produto" required></select>
+            </label>
+            <label>
+              Quantidade
+              <input name="quantia" type="number" min="1" step="1" required>
+            </label>
+            <label>
+              Data
+              <input name="data" type="date" required>
+            </label>
+          </div>
+          <label>
+            Descricao/modelo
+            <textarea name="desc_modelo" maxlength="100" required></textarea>
+          </label>
+          <button type="submit">Salvar transacao</button>
+        </form>
+      </section>
+
+      <p id="app-message" role="status"></p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./assets/js/env.js"></script>
+    <script src="./assets/js/supabase-client.js"></script>
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
+

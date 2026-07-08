@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.supabase/
+node_modules/
+dist/
+build/
+*.log
+
+nbproject/private/
+
+# Dumps antigos contem dados pessoais e senhas em hash.
+resources/*.sql
+resources/*.mwb
+
+.DS_Store
+Thumbs.db
