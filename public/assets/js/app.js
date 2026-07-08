@@ -213,7 +213,14 @@ async function signUp(event) {
   const email = form.get("email");
   const { data, error } = await db.auth.signUp({
     email,
-    password: form.get("password")
+    password: form.get("password"),
+    options: {
+      data: {
+        nome_usuario: form.get("nome_usuario"),
+        matricula: form.get("matricula"),
+        usuario: email.split("@")[0]
+      }
+    }
   });
 
   if (error) {
@@ -223,21 +230,6 @@ async function signUp(event) {
 
   if (!data.user) {
     setMessage("Conta criada. Faca login para continuar.");
-    return;
-  }
-
-  const { error: profileError } = await db.from("tb_usuarios").insert({
-    auth_user_id: data.user.id,
-    nome_usuario: form.get("nome_usuario"),
-    matricula: form.get("matricula"),
-    email,
-    usuario: email.split("@")[0],
-    perfil: 0,
-    status: "ativo"
-  });
-
-  if (profileError) {
-    setMessage(profileError.message, true);
     return;
   }
 
