@@ -19,8 +19,9 @@ Dados do ambiente criado:
 3. Execute o conteudo de `supabase/migrations/20260706010000_initial_schema.sql`.
 4. Execute o conteudo de `supabase/seed.sql`.
 5. Execute o conteudo de `supabase/migrations/20260708090000_auth_profile_trigger.sql`.
-6. Em `Authentication > Providers`, habilite `Email`.
-7. Para teste local, desative confirmacao obrigatoria por e-mail. Em producao, use confirmacao por e-mail.
+6. Execute o conteudo de `supabase/migrations/20260709100000_restrict_public_ranking_view.sql`.
+7. Em `Authentication > Providers`, habilite `Email`.
+8. Para teste local, desative confirmacao obrigatoria por e-mail. Em producao, use confirmacao por e-mail.
 
 ## 2. Configurar o frontend
 
@@ -104,3 +105,15 @@ execute no Supabase SQL Editor:
 Esse script cria um trigger em `auth.users`. A partir dele, o cadastro cria o
 usuario no Supabase Auth e o banco cria automaticamente o registro em
 `public.tb_usuarios`.
+
+## 7. Aviso UNRESTRICTED na view de ranking
+
+`v_ranking_mensal` e uma view publica para mostrar ranking. Se o Supabase
+marcar a view como `UNRESTRICTED`, execute:
+
+```sql
+-- supabase/migrations/20260709100000_restrict_public_ranking_view.sql
+```
+
+Esse script recria a view com `security_invoker` e libera para visitantes
+somente os campos necessarios para ranking: nome, pontuacao, ano e mes.
