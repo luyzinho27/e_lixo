@@ -229,11 +229,11 @@ async function signUp(event) {
   }
 
   if (!data.user) {
-    setMessage("Conta criada. Faca login para continuar.");
+    setMessage("Conta criada. Faça login para continuar.");
     return;
   }
 
-  setMessage("Cadastro criado. Se a confirmacao por e-mail estiver ativa, confirme antes do login.");
+  setMessage("Cadastro criado. Faça login para continuar.");
   event.currentTarget.reset();
   await loadProfile();
 }
